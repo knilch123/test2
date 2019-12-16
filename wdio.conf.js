@@ -1,21 +1,6 @@
 exports.config = {
-
-    // ==================================
-    // Where should your test be launched
-    // ==================================
-    //
     runner: 'local',
-    //
-    // =====================
-    // Server Configurations
-    // =====================
-    // Host address of the running Selenium server. This information is usually obsolete, as
-    // WebdriverIO automatically connects to localhost. Also if you are using one of the
-    // supported cloud services like Sauce Labs, Browserstack, or Testing Bot, you also don't
-    // need to define host and port information (because WebdriverIO can figure that out
-    // from your user and key information). However, if you are using a private Selenium
-    // backend, you should define the `hostname`, `port`, and `path` here.
-    //
+
     hostname: 'localhost',
     port: 4444,
     path: '/wd/hub',
@@ -49,31 +34,10 @@ exports.config = {
     // will be called from there.
     //
     specs: [
-        'test/spec/**'
+        'features/*.feature'
     ],
     // Patterns to exclude.
-    exclude: [
-        'test/spec/multibrowser/**',
-        'test/spec/mobile/**'
-    ],
-    //
-    // ============
-    // Capabilities
-    // ============
-    // Define your capabilities here. WebdriverIO can run multiple capabilities at the same
-    // time. Depending on the number of capabilities, WebdriverIO launches several test
-    // sessions. Within your `capabilities`, you can overwrite the `spec` and `exclude`
-    // options in order to group specific specs to a specific capability.
-    //
-    // First, you can define how many instances should be started at the same time. Let's
-    // say you have 3 different capabilities (Chrome, Firefox, and Safari) and you have
-    // set `maxInstances` to 1. wdio will spawn 3 processes.
-    //
-    // Therefore, if you have 10 spec files and you set `maxInstances` to 10, all spec files
-    // will be tested at the same time and 30 processes will be spawned.
-    //
-    // The property basically handles how many capabilities from the same test should run tests.
-    //
+
     maxInstances: 10,
     //
     // Or set a limit to run tests with a specific capability.
@@ -90,23 +54,6 @@ exports.config = {
         // (see https://developers.google.com/web/updates/2017/04/headless-chrome)
         // args: ['--headless', '--disable-gpu'],
         }
-    }, {
-        // maxInstances can get overwritten per capability. So if you have an in house Selenium
-        // grid with only 5 firefox instance available you can make sure that not more than
-        // 5 instance gets started at a time.
-        maxInstances: 5,
-        browserName: 'firefox',
-        specs: [
-            'test/ffOnly/*'
-        ],
-        'moz:firefoxOptions': {
-          // flag to activate Firefox headless mode (see https://github.com/mozilla/geckodriver/blob/master/README.md#firefox-capabilities for more details about moz:firefoxOptions)
-          // args: ['-headless']
-        },
-        // If outputDir is provided WebdriverIO can capture driver session logs
-        // it is possible to configure which logTypes to exclude.
-        // excludeDriverLogs: ['*'], // pass '*' to exclude all driver session logs
-        excludeDriverLogs: ['bugreport', 'server'],
     }],
     //
     // Additional list of node arguments to use when starting child processes
